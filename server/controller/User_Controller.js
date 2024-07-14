@@ -8,6 +8,7 @@ class UserController{
 
   static register=catchAsyncErrors(async(req,res,next)=>{
     
+    
   })
   
 }
