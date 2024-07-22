@@ -62,3 +62,6 @@ class SoftwareApplicationController{
 
 
 }
+
+
+export default SoftwareApplicationController

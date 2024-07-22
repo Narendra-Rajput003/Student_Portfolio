@@ -82,3 +82,6 @@ class SkillController{
 
 
 }
+
+
+export default SkillController
