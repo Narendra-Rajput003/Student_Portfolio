@@ -11,7 +11,7 @@ const skillSchema=new mongoose.Schema({
         type:Number,
         
     },
-    svg:{
+    skillSvg:{
         type:String
     }
 })

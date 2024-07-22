@@ -39,6 +39,9 @@ const userSchema= new mongoose.Schema({
     linkedlnURL:{
         type:String,
     },
+    twitterURL:{
+        type:String,
+    },
     resetPasswordToken:{
         type:String,
     },
