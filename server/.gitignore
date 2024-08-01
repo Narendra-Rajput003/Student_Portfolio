@@ -1,6 +1,0 @@
-.env
-package.json
-yarn.lock
-package-lock.json
-.DS_Store
-node_modules
