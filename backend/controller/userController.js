@@ -37,6 +37,8 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     );
     return next(new ErrorHandler("Failed to upload resume to Cloudinary", 500));
   }
+
+
   const {
     fullName,
     email,
@@ -50,6 +52,18 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     facebookURL,
     linkedInURL,
   } = req.body;
+
+  const UserExits=await User.findOne({
+    $or:[
+      {email},
+      {fullName}
+    ]
+  })
+
+  
+  if(UserExits) {
+    return next(new ErrorHandler("User Exits!", 400));
+  }
   const user = await User.create({
     fullName,
     email,
@@ -63,12 +77,12 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     facebookURL,
     linkedInURL,
     avatar: {
-      public_id: cloudinaryResponse.public_id, // Set your cloudinary public_id here
-      url: cloudinaryResponse.secure_url, // Set your cloudinary secure_url here
+      public_id: cloudinaryResponseForAvatar.public_id,
+      url: cloudinaryResponseForAvatar.secure_url,
     },
     resume: {
-      public_id: cloudinaryResponse.public_id, // Set your cloudinary public_id here
-      url: cloudinaryResponse.secure_url, // Set your cloudinary secure_url here
+      public_id: cloudinaryResponseForResume.public_id,
+      url: cloudinaryResponseForResume.secure_url,
     },
   });
   generateToken(user, "Registered!", 201, res);
